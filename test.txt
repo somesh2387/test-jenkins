@@ -1,4 +1,3 @@
 test
 abc
 xyz
-gg
