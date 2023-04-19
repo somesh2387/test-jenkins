@@ -1,5 +1,4 @@
 test
 abc\
 ue
-dd
-]]]
+d
