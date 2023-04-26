@@ -14,4 +14,4 @@
     		echo "Extracted string: $extractedString"
 	fi
   echo 'logging into db $DB as $DB_USER'
-  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$DB" < tables.sql | tee somesh.log
+  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$DB" -e "show tables"
