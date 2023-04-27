@@ -1,8 +1,8 @@
   #!/bin/bash
-  DB_URL=$(yq -r .dbUrl swat.gpg.yaml)
-  DB_USER=$(yq -r .dbUsername swat.gpg.yaml)
+  DB_URL=$(yq e .dbUrl swat.gpg.yaml)
+  DB_USER=$(yq e .dbUsername swat.gpg.yaml)
   echo $DB_USER
-  DB_PASS=$(yq -r .dbPassword swat.gpg.yaml)
+  DB_PASS=$(yq e .dbPassword swat.gpg.yaml)
   echo $DB_PASS
   DB=$(echo "$DB_URL" | sed 's/^.*\/\([^?]*\)\?.*$/\1/')
   echo $DB
