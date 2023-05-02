@@ -1,5 +1,5 @@
   #!/bin/bash
-  env =$1
+  env=$1
   DB_URL=$(yq e .dbUrl $env.yaml)
   echo $env
   DB_USER=$(yq e .dbUsername $env.gpg.yaml)
