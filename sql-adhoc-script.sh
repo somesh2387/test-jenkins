@@ -8,5 +8,5 @@
   echo $DB_PASS
   MYSQL_URL=$2
   MYSQL_DB=$3
-  SCRIPT_FILE_NAME=$4
-  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$MYSQL_DB" < "${workspace}/test-jenkins/$SCRIPT_FILE_NAME"
+  SCRIPT_PATH=$4
+  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$MYSQL_DB" < "$SCRIPT_PATH"
