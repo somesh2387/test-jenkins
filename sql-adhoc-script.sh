@@ -8,4 +8,4 @@
   echo $DB_PASS
   MYSQL_URL=$2
   MYSQL_DB=$3
-  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$MYSQL_DB" -e "show tables"
+  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$MYSQL_DB" < "$SCRIPT_PTAH"
