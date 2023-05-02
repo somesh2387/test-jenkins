@@ -9,4 +9,4 @@
   MYSQL_URL=$2
   MYSQL_DB=$3
   SCRIPT_PATH=$4
-  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$MYSQL_DB" < "$SCRIPT_PATH" | tee output.log
+  mysql -A -h "$MYSQL_URL" -u "$DB_USER" --password="$DB_PASS" --database="$MYSQL_DB" < "$SCRIPT_PATH"
