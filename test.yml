@@ -1,0 +1,40 @@
+---
+ - hosts: "{{ my_hosts }}"
+   become: true
+   become_user: root
+   become_method: sudo
+   tasks:
+
+    - name: Updating the packages with excuding......
+      yum:
+        name: '*'
+        state: latest
+        # exclude: java*,mysql*,splunk*,erlan*,centri*,mongo*,mongodb*,redis*,rabbitmq*,rabbitmq-noarch*,consul*,jenkins*,grafana*,elastic*,docker*,tomcat*,ambari*,ganglia*,HDP*,kafka*,graphviz*,httpd*,ca-certificates*,puppet*,ansible*,athena*,kibana*,python-gobject*,postgresql*,cloud-init*
+
+    - name: Check for reboot hint.
+      shell: LAST_KERNEL=$(rpm -q --last kernel | awk 'NR==1{sub(/kernel-/,""); print $1}'); CURRENT_KERNEL=$(uname -r); if [ $LAST_KERNEL != $CURRENT_KERNEL ]; then echo 'reboot_required'; else echo 'no reboot_required'; fi
+      ignore_errors: true
+      register: reboot_hint
+
+    - name: restart the system
+      command: shutdown -r +2 "Rebooting the system after patch"
+      async: 0
+      poll: 0
+      when: reboot_hint.stdout == "reboot_required"
+      register: reboot_started
+      ignore_errors: true
+
+    - name: pause for 120 secs
+      pause:
+        minutes: 2
+
+    - name: check is system is responding to ssh
+      wait_for:
+        port=22
+        delay=15
+        timeout=800
+        state=started
+      when: reboot_started is changed
+
+    - name: checking the system last reboot time
+      command: uptime
