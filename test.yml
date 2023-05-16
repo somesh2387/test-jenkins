@@ -1,5 +1,5 @@
 ---
- - hosts: localhost
+ - hosts: only_me
    become: true
    become_user: root
    become_method: sudo
