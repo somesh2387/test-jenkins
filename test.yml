@@ -1,5 +1,5 @@
 ---
- - hosts: only_me
+ - hosts: aws_hosts
    become: true
    become_user: root
    become_method: sudo
